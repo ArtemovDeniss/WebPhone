@@ -108,7 +108,7 @@ function timer(item) {
 };
 
 
-
+//function calling
 function endCalling() {
     if(sessionStorage.getItem('inCall')) {
         sessionStorage.removeItem('inCall');
