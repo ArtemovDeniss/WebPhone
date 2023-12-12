@@ -88,21 +88,21 @@ function templateCallingInfo(name, number) {
 };
 
 function timer(item) {
-    let sek = 0;
+    let sec = 0;
     let min = 0;
     let hour = 0;
     setInterval(function() {
-        sek++
-        item.innerHTML = `${hour}:${min}:${sek}`;
-        if(sek == 60) {
+        sec++
+        item.innerHTML = `${hour.toString().padStart(2, '0')} : ${min.toString().padStart(2, '0')} : ${sec.toString().padStart(2, '0')}`;
+        if(sec == 60) {
             min++;
-            sek = 0;
-            item.innerHTML = `${hour}:${min}:${sek}`;
+            sec = 0;
+            item.innerHTML = `${hour.toString().padStart(2, '0')} : ${min.toString().padStart(2, '0')} : ${sec.toString().padStart(2, '0')}`;
         };
         if(min == 60) {
             hour++;
             min = 0;
-            item.innerHTML = `${hour}:${min}:${sek}`;
+            item.innerHTML = `${hour.toString().padStart(2, '0')} : ${min.toString().padStart(2, '0')} : ${sec.toString().padStart(2, '0')}`;
         }
     }, 10);
 };

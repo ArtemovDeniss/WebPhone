@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', function() {
         numberList.innerHTML = resultListFavorite;
 
         sortAlphabetList(resultNotFavorite);
-        console.log(resultNotFavorite);
 
         addLeterList(resultNotFavorite);
     };

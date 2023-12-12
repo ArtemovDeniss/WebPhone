@@ -260,7 +260,7 @@ section {
                 }
 
 .content .calling.calling-small {
-    width: 18%;
+    width: 20%;
     color: #fff;
     font-size: 16px;
     border-radius: 4px;
@@ -296,9 +296,6 @@ section {
         }
         .content .calling.calling-small .wrapper-calling .name {
             display: none;
-        }
-        .content .calling.calling-small .wrapper-calling .call-time {
-            
         }
         .content .calling.calling-small .wrapper-calling .icon-box {
             display: flex;

@@ -38,12 +38,14 @@ document.addEventListener('DOMContentLoaded', function() {
         recentBtn.classList.remove('activeBtn');
         numberList.innerHTML = missedCallsList;
         createSection.innerHTML = '';
+        reqestListCalls();
     });
     recentBtn.addEventListener('click', function() {
         recentBtn.classList.add('activeBtn');
         missedBtn.classList.remove('activeBtn');
         numberList.innerHTML = resultList;
         createSection.innerHTML = '';
+        reqestListCalls();
     });
 
     function templateItemList(id, firstName, lastName, number, date, time, missed, callType) {
