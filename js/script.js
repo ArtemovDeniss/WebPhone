@@ -11,7 +11,9 @@ const callingWindow = document.querySelector('.callingWindow');
 const btnCallEnd = document.querySelector('.btnCallEnd');
 
 
-
+inputDialpad.addEventListener('input', function() {
+    this.value = this.value.replace(/[^\d*+#]/g,'');
+});
 
 
 activeDialpad.addEventListener('click', (e) => {
@@ -75,7 +77,7 @@ function templateCallingInfo(name, number) {
             </div>             
             <div class="number">${number}</div>
             <div class="name">${name}</div>
-            <div class="call-time timer"></div>
+            <div class="call-time timer">00 : 00 : 00</div>
             <div class="icon-box">
                 <button class="btnMute btn-style"><svg xmlns="http://www.w3.org/2000/svg" height="1em" class="img-size" viewBox="0 0 640 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M38.8 5.1C28.4-3.1 13.3-1.2 5.1 9.2S-1.2 34.7 9.2 42.9l592 464c10.4 8.2 25.5 6.3 33.7-4.1s6.3-25.5-4.1-33.7L472.1 344.7c15.2-26 23.9-56.3 23.9-88.7V216c0-13.3-10.7-24-24-24s-24 10.7-24 24v40c0 21.2-5.1 41.1-14.2 58.7L416 300.8V96c0-53-43-96-96-96s-96 43-96 96v54.3L38.8 5.1zM344 430.4c20.4-2.8 39.7-9.1 57.3-18.2l-43.1-33.9C346.1 382 333.3 384 320 384c-70.7 0-128-57.3-128-128v-8.7L144.7 210c-.5 1.9-.7 3.9-.7 6v40c0 89.1 66.2 162.7 152 174.4V464H248c-13.3 0-24 10.7-24 24s10.7 24 24 24h72 72c13.3 0 24-10.7 24-24s-10.7-24-24-24H344V430.4z"/></svg></button>
                 <button class="btnPause btn-style"><svg xmlns="http://www.w3.org/2000/svg" height="1em" class="img-size" viewBox="0 0 320 512"><!--! Font Awesome Free 6.4.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><style>svg{fill:#ffffff}</style><path d="M48 64C21.5 64 0 85.5 0 112V400c0 26.5 21.5 48 48 48H80c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H48zm192 0c-26.5 0-48 21.5-48 48V400c0 26.5 21.5 48 48 48h32c26.5 0 48-21.5 48-48V112c0-26.5-21.5-48-48-48H240z"/></svg></button>
@@ -104,7 +106,7 @@ function timer(item) {
             min = 0;
             item.innerHTML = `${hour.toString().padStart(2, '0')} : ${min.toString().padStart(2, '0')} : ${sec.toString().padStart(2, '0')}`;
         }
-    }, 10);
+    }, 1000);
 };
 
 

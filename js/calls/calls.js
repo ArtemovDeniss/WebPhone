@@ -24,12 +24,7 @@ document.addEventListener('DOMContentLoaded', function() {
         numberList.innerHTML = resultList;
 
         createMissedCallsList(listCalls);
-        const listCall = document.querySelectorAll('.itemUser');
-        listCall.forEach(elem => {
-            elem.addEventListener('click', function(e) {
-                openProFile(e, elem);
-            });
-        });
+        createClickItem();
     };
     reqestListCalls();
 
@@ -38,14 +33,14 @@ document.addEventListener('DOMContentLoaded', function() {
         recentBtn.classList.remove('activeBtn');
         numberList.innerHTML = missedCallsList;
         createSection.innerHTML = '';
-        reqestListCalls();
+        createClickItem();
     });
     recentBtn.addEventListener('click', function() {
         recentBtn.classList.add('activeBtn');
         missedBtn.classList.remove('activeBtn');
         numberList.innerHTML = resultList;
         createSection.innerHTML = '';
-        reqestListCalls();
+        createClickItem();
     });
 
     function templateItemList(id, firstName, lastName, number, date, time, missed, callType) {
@@ -278,6 +273,15 @@ document.addEventListener('DOMContentLoaded', function() {
             };
         });
    };
+
+   function createClickItem() {
+    const listCall = document.querySelectorAll('.itemUser');
+        listCall.forEach(elem => {
+            elem.addEventListener('click', function(e) {
+                openProFile(e, elem);
+            });
+        });
+   }
 
 
 }, false);
