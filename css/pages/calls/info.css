@@ -224,6 +224,7 @@ section {
         position: absolute;
         top: 0;
         right: 0;
+        transition: 0.4s;
     }   
         .content .calling .wrapper-calling  {
             text-align: center;
@@ -271,6 +272,7 @@ section {
     top: 3px;
     position: fixed;
     z-index: 20;
+    transition: 0.4s;
 }   
     .content .calling.calling-small .wrapper-calling  {
         display: flex;

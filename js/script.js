@@ -10,6 +10,7 @@ const createSection = document.querySelector('.createSection');
 const callingWindow = document.querySelector('.callingWindow');
 const btnCallEnd = document.querySelector('.btnCallEnd');
 
+sessionStorage.removeItem('inCall');
 
 inputDialpad.addEventListener('input', function() {
     this.value = this.value.replace(/[^\d*+#]/g,'');
@@ -63,8 +64,10 @@ function getCalling(item) {
         createSectionCaling.innerHTML = createSectionElem;
         const callingTimer = document.querySelector('.timer');
         timer(callingTimer);
+        changeCallClass();
     };
 };
+
 createSectionCaling.addEventListener('dblclick', function() {
     this.classList.remove('calling-small');
 });
@@ -115,10 +118,21 @@ function endCalling() {
     if(sessionStorage.getItem('inCall')) {
         sessionStorage.removeItem('inCall');
         createSectionCaling.style.display = 'none';
+        changeCallClass();
     };
     createSectionCaling.classList.remove('calling-small');
 };
 
+function changeCallClass(item) {
+    item = document.querySelectorAll('.getCall');
+    item.forEach(element => {
+        if(!element.classList.contains('callMute')){
+            element.classList.add('callMute');
+        } else {
+            element.classList.remove('callMute')
+        }
+    });
+};
 
 
 window.getCalling = getCalling;

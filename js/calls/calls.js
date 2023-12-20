@@ -3,7 +3,6 @@ document.addEventListener('DOMContentLoaded', function() {
     const createSection = document.querySelector('.createSection');
     const recentBtn = document.querySelector('.recentBtn');
     const missedBtn = document.querySelector('.missedBtn');
-    const getCall = document.querySelectorAll('.getCall');
     const createSectionCaling = document.querySelector('.createSectionCaling');
     
     
@@ -34,6 +33,7 @@ document.addEventListener('DOMContentLoaded', function() {
         numberList.innerHTML = missedCallsList;
         createSection.innerHTML = '';
         createClickItem();
+        changeCallClass()
     });
     recentBtn.addEventListener('click', function() {
         recentBtn.classList.add('activeBtn');
@@ -41,6 +41,7 @@ document.addEventListener('DOMContentLoaded', function() {
         numberList.innerHTML = resultList;
         createSection.innerHTML = '';
         createClickItem();
+        changeCallClass()
     });
 
     function templateItemList(id, firstName, lastName, number, date, time, missed, callType) {
@@ -55,13 +56,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 </div>
                 <div class="right">
                     <span class="date">${date}, ${time}</span>
-                    <button class="getCall call-btn btn-mute" onClick="getCalling(this)" data-num="${number}"  data-name="${firstName} ${lastName}"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_108_444)"><path d="M13.4917 0.67222L10.6479 0.0159695C10.339 -0.0551242 10.0218 0.106204 9.89599 0.396048L8.58349 3.45855C8.46865 3.72652 8.54521 4.04097 8.77216 4.22417L10.4292 5.58042C9.44482 7.67769 7.7249 9.42222 5.58388 10.4257L4.22763 8.76871C4.04169 8.54175 3.72997 8.46519 3.462 8.58003L0.399504 9.89253C0.106925 10.021 -0.0544027 10.3382 0.0166911 10.6472L0.672941 13.491C0.741301 13.7863 1.0038 13.9996 1.31278 13.9996C8.31552 13.9996 14.0003 8.32574 14.0003 1.31206C14.0003 1.00581 13.7897 0.740579 13.4917 0.67222Z" fill="#364A73"/></g><defs><clipPath id="clip0_108_444"><rect width="14" height="14" fill="white"/></clipPath></defs></svg></button>
+                    <button class="getCall call-btn" onClick="getCalling(this)" data-num="${number}"  data-name="${firstName} ${lastName}"><svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_108_444)"><path d="M13.4917 0.67222L10.6479 0.0159695C10.339 -0.0551242 10.0218 0.106204 9.89599 0.396048L8.58349 3.45855C8.46865 3.72652 8.54521 4.04097 8.77216 4.22417L10.4292 5.58042C9.44482 7.67769 7.7249 9.42222 5.58388 10.4257L4.22763 8.76871C4.04169 8.54175 3.72997 8.46519 3.462 8.58003L0.399504 9.89253C0.106925 10.021 -0.0544027 10.3382 0.0166911 10.6472L0.672941 13.491C0.741301 13.7863 1.0038 13.9996 1.31278 13.9996C8.31552 13.9996 14.0003 8.32574 14.0003 1.31206C14.0003 1.00581 13.7897 0.740579 13.4917 0.67222Z" fill="#364A73"/></g><defs><clipPath id="clip0_108_444"><rect width="14" height="14" fill="white"/></clipPath></defs></svg></button>
                 </div>
             </li>
         `;
     };
 
     function templateItemListInfo(firstName, lastName, number, date, time, waitingDuration, onCallDuration, ivrDuration, totalDuration, agent, queue, destinationNumber, sourceNumber, callCategory, callId) {
+        let getStatus = '';
+        if(sessionStorage.getItem('inCall')) {
+            getStatus = 'callMute';
+        }
         return`
             <div class="section">
                 <div class="header-info">
@@ -80,7 +85,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <button class="seckond">Answered</button>
                         </div>
                     </div>
-                    <button class="getCall last-btn" onClick="getCalling(this)" data-num="${number}"  data-name="${firstName} ${lastName}"><svg width="18" height="18" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_108_444)"><path d="M13.4917 0.67222L10.6479 0.0159695C10.339 -0.0551242 10.0218 0.106204 9.89599 0.396048L8.58349 3.45855C8.46865 3.72652 8.54521 4.04097 8.77216 4.22417L10.4292 5.58042C9.44482 7.67769 7.7249 9.42222 5.58388 10.4257L4.22763 8.76871C4.04169 8.54175 3.72997 8.46519 3.462 8.58003L0.399504 9.89253C0.106925 10.021 -0.0544027 10.3382 0.0166911 10.6472L0.672941 13.491C0.741301 13.7863 1.0038 13.9996 1.31278 13.9996C8.31552 13.9996 14.0003 8.32574 14.0003 1.31206C14.0003 1.00581 13.7897 0.740579 13.4917 0.67222Z" fill="#364A73"/></g><defs><clipPath id="clip0_108_444"><rect width="14" height="14" fill="white"/></clipPath></defs></svg></button>
+                    <button class="getCall last-btn ${getStatus}" onClick="getCalling(this)" data-num="${number}"  data-name="${firstName} ${lastName}"><svg width="18" height="18" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_108_444)"><path d="M13.4917 0.67222L10.6479 0.0159695C10.339 -0.0551242 10.0218 0.106204 9.89599 0.396048L8.58349 3.45855C8.46865 3.72652 8.54521 4.04097 8.77216 4.22417L10.4292 5.58042C9.44482 7.67769 7.7249 9.42222 5.58388 10.4257L4.22763 8.76871C4.04169 8.54175 3.72997 8.46519 3.462 8.58003L0.399504 9.89253C0.106925 10.021 -0.0544027 10.3382 0.0166911 10.6472L0.672941 13.491C0.741301 13.7863 1.0038 13.9996 1.31278 13.9996C8.31552 13.9996 14.0003 8.32574 14.0003 1.31206C14.0003 1.00581 13.7897 0.740579 13.4917 0.67222Z" fill="#364A73"/></g><defs><clipPath id="clip0_108_444"><rect width="14" height="14" fill="white"/></clipPath></defs></svg></button>
                 </div>
                 <div class="information">
                     <div class="col-left">
@@ -245,7 +250,7 @@ document.addEventListener('DOMContentLoaded', function() {
             );
             createSection.innerHTML = createSectionElem;
             sessionStorage.getItem('inCall') ? createSectionCaling.classList.add('calling-small') : false;
-        };      
+        };
     };
 
     

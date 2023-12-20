@@ -88,11 +88,13 @@
                     top: 4px;
                     display: none;
                 }
-                .list-box .numbers-list .right .call-btn.btn-mute svg {
-                    fill: antiquewhite;
-                    cursor: none;
-                }
+                
                 .list-box .numbers-list .right .call-btn svg {
                     pointer-events: none;
+                }
+
+                .callMute {
+                    background: gray!important;
+                    cursor: default!important;
                 }
                 
