@@ -1,0 +1,16 @@
+.nav-list {
+    background-color: #364A73;
+    width: 75px;
+    height: 720px;
+    padding: 10px;
+    .button-list {
+        text-decoration: none;
+        &.active {
+            svg {
+                path {
+                    fill: red;
+                }
+            }
+        }
+    }
+}
