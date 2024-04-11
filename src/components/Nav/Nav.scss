@@ -1,14 +1,33 @@
 .nav-list {
     background-color: #364A73;
     width: 75px;
-    height: 720px;
+    height: 100%;
     padding: 10px;
     .button-list {
         text-decoration: none;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin-top: 10px;
+        .btn-icon {
+            background-color: #516793;
+            width: 40px;
+            height: 40px;
+            padding: 10px;
+            border-radius: 4px;
+        }
+        .btn-text {
+            color: #A6B4D0;
+            margin-top: 5px;
+        }
         &.active {
-            svg {
+            .btn-text {
+                color: #fff;
+            }
+            .btn-icon {
+                background-color: #fff;
                 path {
-                    fill: red;
+                    fill:#364A73;
                 }
             }
         }

@@ -1,0 +1,45 @@
+.item {
+    cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+    width: 100%;
+    padding: 5px 10px;
+    position: relative;
+    .left {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 42%;
+        span {
+            color: #495C87;
+            font-size: 16px;
+        }
+        .contact {
+            display: flex;
+            align-items: start;
+            justify-content: start;
+            flex-direction: column;
+            margin-left: 5px;
+        }
+        .name {
+            color: #A6B4D0;
+            font-size: 14px;
+            margin-top: 3px;
+        }
+    }
+    .date {
+        position: relative;
+        color: #A6B4D0;
+        font-size: 16px;
+        z-index: -10;
+    }
+    &:hover {
+        background: #F1F3F8;
+        .call-btn {
+            display: block;
+        }
+    }
+}
+

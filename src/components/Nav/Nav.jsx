@@ -15,8 +15,14 @@ const Nav = () => {
         <>
             <BrowserRouter>
                 <ul className='nav-list'>
-                    <li><NavLink to='/' className='button-list'>{iconCall}Calls</NavLink></li>
-                    <li><NavLink to='/contacts' className='button-list'>{iconContacts}Contacts</NavLink></li>
+                    <li><NavLink to='/' className='button-list'>
+                        <div className='btn-icon'>{iconCall}</div>
+                        <div className='btn-text'>Calls</div></NavLink>
+                    </li>
+                    <li><NavLink to='/contacts' className='button-list'>
+                        <div className='btn-icon'>{iconContacts}</div>
+                        <div className='btn-text'>Contacts</div></NavLink>
+                    </li>
                 </ul>
                 <Routes>
                     <Route path={'/'} element={<Calls />} />
